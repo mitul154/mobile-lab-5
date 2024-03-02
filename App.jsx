@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -25,7 +25,6 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import ToDoList from './components/ToDoList';
 import ToDoForm from './components/ToDoForm';
-
 
 function Section({children, title}) {
   const isDarkMode = useColorScheme() === 'dark';
@@ -54,6 +53,7 @@ function Section({children, title}) {
 }
 
 function App() {
+  const [tasks, setTasks] = useState(['Do laundry', 'Go to gym', 'Walk dog']);
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -62,11 +62,10 @@ function App() {
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <ToDoList/>
-      <ToDoForm/>
+      <ToDoList tasks={tasks} />
+      <ToDoForm tasks={tasks} setTasks={setTasks} />
     </SafeAreaView>
   );
 }
-
 
 export default App;
